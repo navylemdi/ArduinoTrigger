@@ -9,7 +9,7 @@ void setup() {
 void loop() {
 
   float alpha=0.05; //rapport cyclique
-  float fps=2; //Choose fps of camera
+  float fps=15; //Choose fps of camera
   int sensorValue=analogRead(A1); //recuperation valeur A1
   float Voltage=5.0*sensorValue/1023.0; //Conversion en Volt
   boolean Calibration = true;
@@ -19,7 +19,7 @@ void loop() {
   
   unsigned long StartTime = micros();
   
-  if (Voltage >= 2.95 and Calibration == false){
+  if (Voltage >= 2.95 && Calibration == false){
     unsigned long CurrentTime = micros();
     unsigned long ElapsedTime = CurrentTime - StartTime;
     Serial.print(ElapsedTime);
@@ -31,8 +31,7 @@ void loop() {
     digitalWrite(A0, LOW);    // drop the trigger
     digitalWrite(LED_BUILTIN, LOW);// turn the LED off by making the voltage LOW
     delay((1.0-alpha)*1000.0/fps);      // wait
-  }
-  else if (Calibration = true){
+  } else if (Calibration==true){
     digitalWrite(A0, HIGH);   // send the trigger
     digitalWrite(LED_BUILTIN, HIGH);// turn the LED on (HIGH is the voltage level)
     delay(alpha*1000.0/fps);      // wait
